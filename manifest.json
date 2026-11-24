@@ -1,0 +1,48 @@
+{
+  "manifest_version": 2,
+  "name": "PageTurn · YouTube study library",
+  "version": "0.3.0",
+  "description": "Read captured YouTube captions as a book, with a local library of notes, connections and dates.",
+  "permissions": [
+    "storage",
+    "unlimitedStorage"
+  ],
+  "background": {
+    "scripts": [
+      "model.js",
+      "background.js"
+    ]
+  },
+  "browser_action": {
+    "default_title": "Open PageTurn",
+    "default_icon": "book.svg"
+  },
+  "icons": {
+    "48": "book.svg",
+    "96": "book.svg"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.youtube.com/*"
+      ],
+      "js": [
+        "model.js",
+        "style.js",
+        "view.js",
+        "reader.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "pageturn-study@example.invalid",
+      "data_collection_permissions": {
+        "required": [
+          "none"
+        ]
+      }
+    }
+  }
+}
